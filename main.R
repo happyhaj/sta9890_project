@@ -5,7 +5,23 @@ library(glmnet)
 library(ISLR)
 library(randomForest)
 library(gridExtra)
-library(tidyr)
+
+
+### code to sample the original larger dataset ###
+### only run once ###
+data= read.csv('financial-indicators/2014_Financial_Data.csv')
+data = data[sample(1:nrow(data),1000),]
+growths = c((221-34):221) #34 growths features
+ratios = c(147:156) #10 ratios features
+data = data[,c(ratios,growths,224)]
+write.csv(data,'financial.csv')
+### code above only run once ###
+
+
+
+
+
+### only use 1000 datapoints and 45 features ###
 
 data= read.csv('financial.csv')
 data=data.matrix(data)
